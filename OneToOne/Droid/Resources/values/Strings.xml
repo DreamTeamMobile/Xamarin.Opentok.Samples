@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string
+		name="app_name">Opentok Xamarin Sample</string>
+	<string
+		name="splash_greetings">Brought to you by</string>
+	<string
+		name="powered_by">powered by opentok</string>
+	<string
+		name="join_description">Enter room name to join</string>
+	<string
+		name="join_button">JOIN</string>
+	<string
+		name="permissions_not_granted">Not all permissions granted to the app, please check permissions and try again</string>
+</resources>
