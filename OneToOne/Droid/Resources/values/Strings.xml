@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 	<string
-		name="app_name">Opentok Xamarin Sample</string>
+		name="app_name">OpenTok + Xamarin</string>
 	<string
 		name="splash_greetings">Brought to you by</string>
 	<string
-		name="powered_by">powered by opentok</string>
+		name="powered_by">powered by OpenTok</string>
 	<string
 		name="join_description">Enter room name to join</string>
 	<string

@@ -14,7 +14,6 @@ namespace DT.Samples.Opentok.OneToOne.Droid
     {
         protected const int MaxLocalVideoDimension = 150;
         private bool _isVideoEnabled = true;
-        private SurfaceView _localVideoView;
         private OpenTokStreamingService _opentokService;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -28,13 +27,26 @@ namespace DT.Samples.Opentok.OneToOne.Droid
 
         public async Task StartSession()
         {
-            var sessionId = await OpentokSessionHelper.Request(OpentokSessionHelper.SessionRequestURI, OpentokSettings.Current.RoomName);
-            var token = await OpentokSessionHelper.Request(OpentokSessionHelper.TokenRequestURI, sessionId);
+            var sessionId = OpentokTestConstants.GenerateSessionAndTokenWithServer ? await OpentokSessionHelper.Request(OpentokSessionHelper.SessionRequestURI, OpentokSettings.Current.RoomName) : OpentokTestConstants.SessionId;
+            var token = OpentokTestConstants.GenerateSessionAndTokenWithServer ? await OpentokSessionHelper.Request(OpentokSessionHelper.TokenRequestURI, sessionId) : OpentokTestConstants.Token;
             FindViewById<RelativeLayout>(Resource.Id.loading_layer).Visibility = ViewStates.Gone;
             FindViewById<ProgressBar>(Resource.Id.loading_indicator).Visibility = ViewStates.Gone;
             _opentokService.SetStreamContainer(FindViewById<FrameLayout>(Resource.Id.local_video_view_container), true);
             _opentokService.SetStreamContainer(FindViewById<FrameLayout>(Resource.Id.remote_video_view_container), false);
             _opentokService.InitNewSession(OpentokTestConstants.OpentokAPI, sessionId, token);
+            this.Window.AddFlags(WindowManagerFlags.KeepScreenOn);
+            var self = this;
+            _opentokService.OnSessionEnded += () =>
+            {
+                Finish();
+                self.Window.ClearFlags(WindowManagerFlags.KeepScreenOn);
+            };
+            _opentokService.OnPublishStarted += () =>
+            {
+                FindViewById(Resource.Id.local_video_container).Visibility = _isVideoEnabled ? ViewStates.Visible : ViewStates.Gone;
+                FindViewById(Resource.Id.local_video_view_container).Visibility = _isVideoEnabled ? ViewStates.Visible : ViewStates.Gone;
+                FindViewById(Resource.Id.local_video_overlay).Visibility = _isVideoEnabled && !_opentokService.IsAudioPublishingEnabled ? ViewStates.Visible : ViewStates.Gone;
+            };
         }
 
         protected override void OnDestroy()
@@ -58,8 +70,10 @@ namespace DT.Samples.Opentok.OneToOne.Droid
             }
             _opentokService.IsVideoPublishingEnabled = !iv.Selected;
             _isVideoEnabled = !iv.Selected;
+            FindViewById<FrameLayout>(Resource.Id.local_video_view_container).GetChildAt(0).Visibility = _isVideoEnabled ? ViewStates.Visible : ViewStates.Gone;
             FindViewById(Resource.Id.local_video_container).Visibility = _isVideoEnabled ? ViewStates.Visible : ViewStates.Gone;
-            _localVideoView.Visibility = _isVideoEnabled ? ViewStates.Visible : ViewStates.Gone;
+            FindViewById(Resource.Id.local_video_view_container).Visibility = _isVideoEnabled ? ViewStates.Visible : ViewStates.Gone;
+            FindViewById(Resource.Id.local_video_overlay).Visibility = _isVideoEnabled && !_opentokService.IsAudioPublishingEnabled ? ViewStates.Visible : ViewStates.Gone;
         }
 
         [Java.Interop.Export("OnLocalAudioMuteClicked")]
@@ -92,7 +106,6 @@ namespace DT.Samples.Opentok.OneToOne.Droid
         public void OnEncCallClicked(View view)
         {
             _opentokService.EndSession();
-            Finish();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace DT.Samples.Opentok.OneToOne.iOS
     public partial class JoinViewController : UIViewController
     {
         protected const string QualityFormat = "Current Connection - {0}";
-        protected const string OpentokVersion = "powered by opentok <version>";
+        protected const string OpentokVersion = "powered by OpenTok <version>";
 
         public override UIStatusBarStyle PreferredStatusBarStyle()
         {
@@ -29,6 +29,15 @@ namespace DT.Samples.Opentok.OneToOne.iOS
             MakeTextFieldRounded(ChannelNameEdit);
             AgoraVersionLabel.Text = OpentokVersion;
             NavigationItem.LeftBarButtonItem = new UIBarButtonItem(UIImage.FromBundle("ic_share"), UIBarButtonItemStyle.Plain, ShareButtonCliked);
+            SetupKeyboardHiding();
+        }
+
+        private void SetupKeyboardHiding()
+        {
+            UITapGestureRecognizer singleTapRecognizer = new UITapGestureRecognizer(() => { ChannelNameEdit.ResignFirstResponder(); });
+            singleTapRecognizer.NumberOfTouchesRequired = 1;
+            singleTapRecognizer.CancelsTouchesInView = false;
+            View.AddGestureRecognizer(singleTapRecognizer);
         }
 
         void TextField_EditingDidBegin(object sender, EventArgs e)

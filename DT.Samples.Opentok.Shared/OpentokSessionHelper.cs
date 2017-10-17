@@ -9,8 +9,8 @@ namespace DT.Samples.Opentok.Shared
 {
     public static class OpentokSessionHelper
     {
-        public const string SessionRequestURI = "https://dt-video.azurewebsites.net/opentok/session/{0}";
-        public const string TokenRequestURI = "https://dt-video.azurewebsites.net/opentok/token/{0}";
+        public const string SessionRequestURI = "";
+        public const string TokenRequestURI = "";
 
         public static async Task<string> Request(string urlFormat, string value)
         {

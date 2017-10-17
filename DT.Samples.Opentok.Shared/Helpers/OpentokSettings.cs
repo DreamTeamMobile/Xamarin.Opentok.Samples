@@ -30,13 +30,13 @@ namespace DT.Samples.Opentok.Shared.Helpers
 
         #region Setting Constants
 
-        private const string ProfileKey = "profile_key";
+        private const string ProfileKey = "op_profile_key";
         private static readonly int ProfileDefault = 30;
 
-        private const string UseMySettingsKey = "useMySettings_key";
+        private const string UseMySettingsKey = "op_useMySettings_key";
         private static readonly bool UseMySettingsDefault = false;
 
-        private const string RoomNameKey = "roomName_key";
+        private const string RoomNameKey = "op_roomName_key";
         private static readonly string RoomNameDefault = "drmtm.us";
 
         #endregion
@@ -45,11 +45,11 @@ namespace DT.Samples.Opentok.Shared.Helpers
         {
             get
             {
-                return AppSettings.GetValueOrDefault<int>(ProfileKey, ProfileDefault);
+                return AppSettings.GetValueOrDefault(ProfileKey, ProfileDefault);
             }
             set
             {
-                AppSettings.AddOrUpdateValue<int>(ProfileKey, value);
+                AppSettings.AddOrUpdateValue(ProfileKey, value);
                 OnPropertyChanged();
             }
         }
@@ -58,11 +58,11 @@ namespace DT.Samples.Opentok.Shared.Helpers
         {
             get
             {
-                return AppSettings.GetValueOrDefault<bool>(UseMySettingsKey, UseMySettingsDefault);
+                return AppSettings.GetValueOrDefault(UseMySettingsKey, UseMySettingsDefault);
             }
             set
             {
-                AppSettings.AddOrUpdateValue<bool>(UseMySettingsKey, value);
+                AppSettings.AddOrUpdateValue(UseMySettingsKey, value);
                 OnPropertyChanged();
             }
         }
@@ -71,11 +71,11 @@ namespace DT.Samples.Opentok.Shared.Helpers
         {
             get
             {
-                return AppSettings.GetValueOrDefault<string>(RoomNameKey, RoomNameDefault);
+                return AppSettings.GetValueOrDefault(RoomNameKey, RoomNameDefault);
             }
             set
             {
-                AppSettings.AddOrUpdateValue<string>(RoomNameKey, value);
+                AppSettings.AddOrUpdateValue(RoomNameKey, value);
                 OnPropertyChanged();
             }
         }

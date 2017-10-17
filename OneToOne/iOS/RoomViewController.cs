@@ -66,6 +66,8 @@ namespace DT.Samples.Opentok.OneToOne.iOS
             BusyIndicatorView.StartAnimating();
             _opentokService = OpentokStreamingService.Instance;
             StartSession();
+            _opentokService.OnPublishStarted += () => { VideoMuted = false; };
+            _opentokService.OnSessionEnded += () => { LeaveChannel(); };
         }
 
         public async Task StartSession()
@@ -95,16 +97,17 @@ namespace DT.Samples.Opentok.OneToOne.iOS
             _opentokService.SwapCamera();
         }
 
-        public void LeaveChannel()
+        public void LeaveChannel(bool frombutton = false)
         {
-            _opentokService.EndSession();
+            if (frombutton)
+                _opentokService.EndSession();
             NavigationController.NavigationBarHidden = false;
             NavigationController.PopViewController(true);
         }
 
         partial void EndCallClicked(NSObject sender)
         {
-            LeaveChannel();
+            LeaveChannel(true);
         }
 
         private void UpdateMutedViewVisibility()

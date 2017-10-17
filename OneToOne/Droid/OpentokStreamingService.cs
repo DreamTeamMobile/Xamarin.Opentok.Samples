@@ -15,11 +15,11 @@ namespace DT.Samples.Opentok.OneToOne.Droid
         protected string _userToken;
         protected bool _subscriberConnected;
         protected bool _sessionTerminationIsInProgress = false;
-        protected Action _onEndSession;
 
         #endregion
 
-        public event Action<string> OnScreenshotTaken = delegate { };
+        public event Action OnSessionEnded = delegate { };
+        public event Action OnPublishStarted = delegate { };
 
         #region singletone
 
@@ -126,11 +126,6 @@ namespace DT.Samples.Opentok.OneToOne.Droid
         {
         }
 
-        public void InitCallback(Action<bool> onHold, Action sessionEnd)
-        {
-            _onEndSession = sessionEnd;
-        }
-
         public void InitNewSession(string apiKey, string sessionId, string userToken)
         {
             if (_session != null)
@@ -163,6 +158,8 @@ namespace DT.Samples.Opentok.OneToOne.Droid
                     return;
 
                 _publisher = new Publisher(Android.App.Application.Context, Environment.TickCount.ToString());
+
+                SubscribeForPublsherEvents(_publisher, true);
                 _publisher.SetStyle(BaseVideoRenderer.StyleVideoScale, BaseVideoRenderer.StyleVideoFill);
                 if (_publisher.PublishAudio != IsAudioPublishingEnabled)
                     _publisher.PublishAudio = IsAudioPublishingEnabled;
@@ -221,6 +218,7 @@ namespace DT.Samples.Opentok.OneToOne.Droid
                             _publisher.PublishAudio = false;
                         if (_publisher.PublishVideo)
                             _publisher.PublishVideo = false;
+                        SubscribeForPublsherEvents(_publisher, false);
                         _publisher.Dispose();
                         _publisher = null;
                     }
@@ -260,6 +258,7 @@ namespace DT.Samples.Opentok.OneToOne.Droid
                 finally
                 {
                     _sessionTerminationIsInProgress = false;
+                    OnSessionEnded();
                 }
             }
         }
@@ -403,6 +402,21 @@ namespace DT.Samples.Opentok.OneToOne.Droid
             }
         }
 
+        private void SubscribeForPublsherEvents(Publisher publisher, bool subscribe = true)
+        {
+            if (publisher == null)
+                return;
+
+            if (subscribe)
+            {
+                publisher.StreamCreated += OnPublisherStreamCreated;
+            }
+            else
+            {
+                publisher.StreamCreated -= OnPublisherStreamCreated;
+            }
+        }
+
 
         #endregion
 
@@ -460,6 +474,15 @@ namespace DT.Samples.Opentok.OneToOne.Droid
                         IsSubscriberVideoEnabled = true;
                 }
             }
+        }
+
+        #endregion
+
+        #region publisher evenets
+
+        void OnPublisherStreamCreated(object sender, PublisherKit.StreamCreatedEventArgs e)
+        {
+            OnPublishStarted();
         }
 
         #endregion

@@ -10,6 +10,7 @@ using Android.Support.V4.App;
 using Android.Support.V4.Content;
 using Android.Support.V7.App;
 using Android.Views;
+using Android.Views.InputMethods;
 using Android.Widget;
 using DT.Samples.Opentok.Shared;
 using DT.Samples.Opentok.Shared.Helpers;
@@ -97,6 +98,14 @@ namespace DT.Samples.Opentok.OneToOne.Droid
             sendIntent.PutExtra(Intent.ExtraText, OpentokTestConstants.ShareString);
             sendIntent.SetType("text/plain");
             StartActivity(sendIntent);
+        }
+
+
+        public override bool OnTouchEvent(MotionEvent e)
+        {
+            InputMethodManager imm = (InputMethodManager)GetSystemService(Context.InputMethodService);
+            imm.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
+            return base.OnTouchEvent(e);
         }
     }
 }

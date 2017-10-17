@@ -19,6 +19,9 @@ namespace DT.Samples.Opentok.OneToOne.iOS
 
         #endregion
 
+        public event Action OnSessionEnded = delegate { };
+        public event Action OnPublishStarted = delegate { };
+
         #region singletone
 
         private static OpentokStreamingService _instance = new OpentokStreamingService();
@@ -37,17 +40,11 @@ namespace DT.Samples.Opentok.OneToOne.iOS
         private UIView _myStreamContainer;
         private UIView _otherStreamContainer;
         private bool _lastKnownVideoPublishingState;
-        private Action _onEndSession;
 
         #endregion
 
         private OpentokStreamingService()
         {
-        }
-
-        public void InitCallback(Action<bool> onHold, Action sessionEnd)
-        {
-            _onEndSession = sessionEnd;
         }
 
         public void SetConfig(string apiKey, string sessionId, string userToken)
@@ -102,7 +99,7 @@ namespace DT.Samples.Opentok.OneToOne.iOS
                     CameraFrameRate = OTCameraCaptureFrameRate.OTCameraCaptureFrameRate15FPS,
                     CameraResolution = OTCameraCaptureResolution.High,
                 });
-
+                SubscribeForPublisherEvents(_publisher, true);
                 _session.Publish(_publisher, out error);
 
                 ActivateStreamContainer(_myStreamContainer, _publisher.View);
@@ -146,6 +143,7 @@ namespace DT.Samples.Opentok.OneToOne.iOS
                             _publisher.PublishAudio = false;
                         if (_publisher.PublishVideo)
                             _publisher.PublishVideo = false;
+                        SubscribeForPublisherEvents(_publisher, false);
                         _publisher.Dispose();
                         _publisher = null;
                     }
@@ -186,8 +184,7 @@ namespace DT.Samples.Opentok.OneToOne.iOS
                 finally
                 {
                     _sessionTerminationIsInProgress = false;
-                    if (_onEndSession != null)
-                        _onEndSession.Invoke();
+                    OnSessionEnded();
                 }
             }
         }
@@ -412,6 +409,21 @@ namespace DT.Samples.Opentok.OneToOne.iOS
             }
         }
 
+        private void SubscribeForPublisherEvents(OTPublisher publisher, bool subscribe = true)
+        {
+            if (publisher == null)
+                return;
+
+            if (subscribe)
+            {
+                publisher.StreamCreated += OnPublisherStreamCreated;
+            }
+            else
+            {
+                publisher.StreamCreated += OnPublisherStreamCreated;
+            }
+        }
+
         #endregion
 
         #region session events
@@ -470,6 +482,15 @@ namespace DT.Samples.Opentok.OneToOne.iOS
                         IsSubscriberVideoEnabled = true;
                 }
             }
+        }
+
+        #endregion
+
+        #region subscriber evenets
+
+        void OnPublisherStreamCreated(object sender, OTPublisherDelegateStreamEventArgs e)
+        {
+            OnPublishStarted();
         }
 
         #endregion

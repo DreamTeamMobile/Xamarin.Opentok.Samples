@@ -36,10 +36,12 @@
 	<key>NSMicrophoneUsageDescription</key>
 	<string>use microphone to start video call</string>
 	<key>CFBundleName</key>
-	<string>Opentok Xamarin Sample</string>
+	<string>OpenTok + Xamarin</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
+	<key>UIRequiresFullScreen</key>
 	<true/>
 </dict>
 </plist>
