@@ -65,20 +65,20 @@ namespace DT.Samples.Opentok.OneToOne.iOS
             BackgroundTap.ShouldRequireFailureOfGestureRecognizer(BackgroundDoubleTap);
             BusyIndicatorView.StartAnimating();
             _opentokService = OpentokStreamingService.Instance;
-            StartSession();
+            StartSessionAsync();
             _opentokService.OnPublishStarted += () => { VideoMuted = false; };
             _opentokService.OnSessionEnded += () => { LeaveChannel(); };
         }
 
-        public async Task StartSession()
+        public async Task StartSessionAsync()
         {
-            var sessionId = await OpentokSessionHelper.Request(OpentokSessionHelper.SessionRequestURI, OpentokSettings.Current.RoomName);
-            var token = await OpentokSessionHelper.Request(OpentokSessionHelper.TokenRequestURI, sessionId);
+            var sessionId = OpentokTestConstants.GenerateSessionAndTokenWithServer ? await OpentokSessionHelper.RequestDataFromApiAsync(OpentokSessionHelper.SessionRequestURI, OpentokSettings.Current.RoomName) : OpentokTestConstants.SessionId;
+            var token = OpentokTestConstants.GenerateSessionAndTokenWithServer ? await OpentokSessionHelper.RequestDataFromApiAsync(OpentokSessionHelper.TokenRequestURI, sessionId) : OpentokTestConstants.Token;
             BusyIndicatorView.Hidden = BusyViewLayer.Hidden = BusyTextView.Hidden = true;
             ContainerView.Hidden = LocalView.Hidden = false;
             _opentokService.SetStreamContainer(ContainerView, false);
             _opentokService.SetStreamContainer(LocalView, true);
-            _opentokService.InitNewSession(OpentokTestConstants.OpentokAPI, sessionId, token);
+            _opentokService.InitNewSession(OpentokTestConstants.OpentokAPIKey, sessionId, token);
             UIApplication.SharedApplication.IdleTimerDisabled = true;
         }
 

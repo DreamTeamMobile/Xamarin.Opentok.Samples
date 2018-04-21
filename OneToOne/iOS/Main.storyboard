@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="15">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="15">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -335,13 +335,13 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="ActivityInProgressView" destination="J6T-sc-wS3" id="FZ5-xC-Kem"/>
-                        <outlet property="AgoraVersionLabel" destination="Jdb-cj-eaI" id="acz-pg-03a"/>
                         <outlet property="ChannelNameEdit" destination="Y22-X8-LCO" id="eSU-3p-G6y"/>
                         <outlet property="ConnectingLabel" destination="SEc-fV-Zz0" id="kwI-UJ-Kjs"/>
                         <outlet property="ConnectionImage" destination="lmL-pL-17Q" id="Eea-GZ-BpD"/>
                         <outlet property="EncryptionKeyEdit" destination="wYo-NP-Pci" id="z6z-Kz-3uW"/>
                         <outlet property="JoinButton" destination="Brt-ft-xFL" id="MLg-ct-UWP"/>
                         <outlet property="OpacityLayerView" destination="lJv-t0-iwq" id="9p3-Pt-Ysx"/>
+                        <outlet property="SDKVersionLabel" destination="Jdb-cj-eaI" id="kER-Pr-GGR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kiu-aC-CMd" userLabel="First Responder" sceneMemberID="firstResponder"/>

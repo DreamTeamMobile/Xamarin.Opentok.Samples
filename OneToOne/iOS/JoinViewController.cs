@@ -1,8 +1,8 @@
 using System;
-using DT.Samples.Opentok.Shared.Helpers;
-using UIKit;
-using Foundation;
 using DT.Samples.Opentok.Shared;
+using DT.Samples.Opentok.Shared.Helpers;
+using Foundation;
+using UIKit;
 
 namespace DT.Samples.Opentok.OneToOne.iOS
 {
@@ -27,9 +27,15 @@ namespace DT.Samples.Opentok.OneToOne.iOS
             ChannelNameEdit.EditingDidBegin += TextField_EditingDidBegin;
             ChannelNameEdit.EditingDidEnd += TextField_EditingDidEnd;
             MakeTextFieldRounded(ChannelNameEdit);
-            AgoraVersionLabel.Text = OpentokVersion;
+            SDKVersionLabel.Text = OpentokVersion;
             NavigationItem.LeftBarButtonItem = new UIBarButtonItem(UIImage.FromBundle("ic_share"), UIBarButtonItemStyle.Plain, ShareButtonCliked);
             SetupKeyboardHiding();
+        }
+
+        public override void ViewDidDisappear(bool animated)
+        {
+            OpentokSettings.Current.RoomName = ChannelNameEdit.Text;
+            base.ViewDidDisappear(animated);
         }
 
         private void SetupKeyboardHiding()
@@ -40,12 +46,12 @@ namespace DT.Samples.Opentok.OneToOne.iOS
             View.AddGestureRecognizer(singleTapRecognizer);
         }
 
-        void TextField_EditingDidBegin(object sender, EventArgs e)
+        private void TextField_EditingDidBegin(object sender, EventArgs e)
         {
             ChannelNameEdit.Layer.BorderColor = Theme.TintColor.CGColor;
         }
 
-        void TextField_EditingDidEnd(object sender, EventArgs e)
+        private void TextField_EditingDidEnd(object sender, EventArgs e)
         {
             ChannelNameEdit.Layer.BorderColor = Theme.TitleTextColor.CGColor;
         }
@@ -57,13 +63,7 @@ namespace DT.Samples.Opentok.OneToOne.iOS
             textField.Layer.BorderWidth = 2;
         }
 
-        public override void ViewDidDisappear(bool animated)
-        {
-            OpentokSettings.Current.RoomName = ChannelNameEdit.Text;
-            base.ViewDidDisappear(animated);
-        }
-
-        void ShareButtonCliked(object sender, EventArgs e)
+        private void ShareButtonCliked(object sender, EventArgs e)
         {
             var activityController = new UIActivityViewController(new NSObject[] {
                 UIActivity.FromObject(OpentokTestConstants.ShareString),

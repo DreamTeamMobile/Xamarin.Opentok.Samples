@@ -1,7 +1,7 @@
 ﻿using System;
 namespace DT.Samples.Opentok.Shared
 {
-    public class OpentokRequest
+    public class CustomApiResponse
     {
         public string Result { get; set; }
     }
