@@ -1,4 +1,4 @@
-# [OpenTok](http://https://tokbox.com/) Xamarin iOS/Android sample project
+# [OpenTok](https://tokbox.com/) Xamarin iOS/Android sample project
 
 Sample showing how to integrate Tokbox Opentok SDK into Xamarin iOS/Android apps
 
