@@ -75,9 +75,6 @@
     <Reference Include="Plugin.Settings">
       <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\MonoAndroid10\Plugin.Settings.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.OpenTok.Android">
-      <HintPath>..\..\packages\Xamarin.OpenTok.Android.2.14.0\lib\MonoAndroid\Xamarin.OpenTok.Android.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Android.Support.Annotations">
       <HintPath>..\..\packages\Xamarin.Android.Support.Annotations.27.0.2.1\lib\MonoAndroid81\Xamarin.Android.Support.Annotations.dll</HintPath>
     </Reference>
@@ -125,6 +122,9 @@
     </Reference>
     <Reference Include="Xamarin.Android.Support.Design">
       <HintPath>..\..\packages\Xamarin.Android.Support.Design.27.0.2.1\lib\MonoAndroid81\Xamarin.Android.Support.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.OpenTok.Android">
+      <HintPath>..\..\packages\Xamarin.OpenTok.Android.2.14.1\lib\MonoAndroid\Xamarin.OpenTok.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

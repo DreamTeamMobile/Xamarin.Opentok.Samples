@@ -472,6 +472,7 @@ namespace DT.Samples.Opentok.OneToOne.Droid
                     ActivateStreamContainer(_otherStreamContainer, _subscriber.View);
                     if (_subscriber.Stream != null && _subscriber.Stream.HasVideo)
                         IsSubscriberVideoEnabled = true;
+                    ActivateStreamContainer(_myStreamContainer, _publisher.View);
                 }
             }
         }
