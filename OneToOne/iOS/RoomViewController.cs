@@ -101,8 +101,11 @@ namespace DT.Samples.Opentok.OneToOne.iOS
         {
             if (frombutton)
                 _opentokService.EndSession();
-            NavigationController.NavigationBarHidden = false;
-            NavigationController.PopViewController(true);
+            if (NavigationController != null)
+            {
+                NavigationController.NavigationBarHidden = false;
+                NavigationController.PopViewController(true);
+            }
         }
 
         partial void EndCallClicked(NSObject sender)

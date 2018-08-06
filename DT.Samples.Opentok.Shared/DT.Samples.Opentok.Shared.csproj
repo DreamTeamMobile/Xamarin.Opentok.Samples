@@ -77,9 +77,7 @@
     <Compile Include="Helpers\OpentokSettings.cs" />
     <Compile Include="Helpers\BasePropertyChanged.cs" />
     <Compile Include="OpentokSessionHelper.cs" />
-    <Compile Include="OpentokRequest.cs" />
     <Compile Include="CustomApiResponse.cs" />
-    <Compile Include="Helpers\Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Plugin.Settings.Abstractions">
