@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
 using Android.App;
 using Android.OS;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using DT.Samples.Opentok.Shared;
@@ -22,18 +21,18 @@ namespace DT.Samples.Opentok.OneToOne.Droid
             SetContentView(Resource.Layout.Room);
             FindViewById<TextView>(Resource.Id.room_name).Text = OpentokSettings.Current.RoomName;
             _opentokService = OpenTokStreamingService.Instance;
-            StartSession();
+            StartSessionAsync();
         }
 
-        public async Task StartSession()
+        public async Task StartSessionAsync()
         {
-            var sessionId = OpentokTestConstants.GenerateSessionAndTokenWithServer ? await OpentokSessionHelper.Request(OpentokSessionHelper.SessionRequestURI, OpentokSettings.Current.RoomName) : OpentokTestConstants.SessionId;
-            var token = OpentokTestConstants.GenerateSessionAndTokenWithServer ? await OpentokSessionHelper.Request(OpentokSessionHelper.TokenRequestURI, sessionId) : OpentokTestConstants.Token;
+            var sessionId = OpentokTestConstants.GenerateSessionAndTokenWithServer ? await OpentokSessionHelper.RequestDataFromApiAsync(OpentokSessionHelper.SessionRequestURI, OpentokSettings.Current.RoomName) : OpentokTestConstants.SessionId;
+            var token = OpentokTestConstants.GenerateSessionAndTokenWithServer ? await OpentokSessionHelper.RequestDataFromApiAsync(OpentokSessionHelper.TokenRequestURI, sessionId) : OpentokTestConstants.Token;
             FindViewById<RelativeLayout>(Resource.Id.loading_layer).Visibility = ViewStates.Gone;
             FindViewById<ProgressBar>(Resource.Id.loading_indicator).Visibility = ViewStates.Gone;
             _opentokService.SetStreamContainer(FindViewById<FrameLayout>(Resource.Id.local_video_view_container), true);
             _opentokService.SetStreamContainer(FindViewById<FrameLayout>(Resource.Id.remote_video_view_container), false);
-            _opentokService.InitNewSession(OpentokTestConstants.OpentokAPI, sessionId, token);
+            _opentokService.InitNewSession(OpentokTestConstants.OpentokAPIKey, sessionId, token);
             this.Window.AddFlags(WindowManagerFlags.KeepScreenOn);
             var self = this;
             _opentokService.OnSessionEnded += () =>
