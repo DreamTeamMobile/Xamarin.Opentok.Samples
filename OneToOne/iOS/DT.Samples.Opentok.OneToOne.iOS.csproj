@@ -166,13 +166,13 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
     <Reference Include="Plugin.Settings.Abstractions">
-      <HintPath>..\..\packages\Xam.Plugins.Settings.3.0.1\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Plugin.Settings">
-      <HintPath>..\..\packages\Xam.Plugins.Settings.3.0.1\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
+      <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.OpenTok.iOS">
-      <HintPath>..\..\packages\Xamarin.OpenTok.iOS.2.13.0\lib\Xamarin.iOS10\Xamarin.OpenTok.iOS.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.OpenTok.iOS.2.14.1\lib\Xamarin.iOS10\Xamarin.OpenTok.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -323,7 +323,6 @@
     </Compile>
     <Compile Include="Theme.cs" />
     <Compile Include="OpentokStreamingService.cs" />
-    <Compile Include="Helpers\Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DT.Samples.Opentok.Shared\DT.Samples.Opentok.Shared.csproj">

@@ -70,7 +70,7 @@ namespace DT.Samples.Opentok.OneToOne.iOS
             _apiKey = apiKey;
             _sessionId = sessionId;
             _userToken = userToken;
-
+            //OpenTokExtraLogging.EnableOpenTokLoggingToConsole();
             IsVideoPublishingEnabled = true;
             IsAudioPublishingEnabled = true;
             IsVideoSubscriptionEnabled = true;
