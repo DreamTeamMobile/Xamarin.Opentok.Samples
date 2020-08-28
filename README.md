@@ -1,8 +1,8 @@
-# [OpenTok](https://tokbox.com/) Xamarin iOS/Android sample project
+# [Vonage Video API (previously OpenTok)](https://www.vonage.com/communications-apis/video/) Xamarin iOS/Android sample project
 
-Sample showing how to integrate Tokbox Opentok SDK into Xamarin iOS/Android apps
+Sample showing how to integrate Vonage Video API (Opentok) SDK into Xamarin iOS/Android apps
 
-The OpenTok SDK allows you to build live interactive video, voice and messaging into your web and mobile apps
+The Vonage Video API SDK allows you to build live interactive video, voice and messaging into your web and mobile apps
 
 ## Xamarin.iOS and Xamarin.Android OpenTok SDK packages
 
