@@ -39,7 +39,6 @@ namespace DT.Samples.Opentok.OneToOne.iOS
         private OTSubscriber _subscriber;
         private UIView _myStreamContainer;
         private UIView _otherStreamContainer;
-        private bool _lastKnownVideoPublishingState;
 
         #endregion
 

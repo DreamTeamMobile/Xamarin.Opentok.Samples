@@ -21,7 +21,7 @@ namespace DT.Samples.Opentok.OneToOne.Droid
             SetContentView(Resource.Layout.Room);
             FindViewById<TextView>(Resource.Id.room_name).Text = OpentokSettings.Current.RoomName;
             _opentokService = OpenTokStreamingService.Instance;
-            StartSessionAsync();
+            StartSessionAsync().NoWait();
         }
 
         public async Task StartSessionAsync()

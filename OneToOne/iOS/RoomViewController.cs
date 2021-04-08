@@ -65,7 +65,7 @@ namespace DT.Samples.Opentok.OneToOne.iOS
             BackgroundTap.ShouldRequireFailureOfGestureRecognizer(BackgroundDoubleTap);
             BusyIndicatorView.StartAnimating();
             _opentokService = OpentokStreamingService.Instance;
-            StartSessionAsync();
+            StartSessionAsync().NoWait();
             _opentokService.OnPublishStarted += () => { VideoMuted = false; };
             _opentokService.OnSessionEnded += () => { LeaveChannel(); };
         }

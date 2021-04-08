@@ -28,7 +28,7 @@ namespace DT.Samples.Opentok.Shared
                 var apiResponse = JsonConvert.DeserializeObject<CustomApiResponse>(result);
                 return apiResponse.Result;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
             return string.Empty;

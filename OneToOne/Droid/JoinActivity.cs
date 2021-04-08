@@ -44,7 +44,7 @@ namespace DT.Samples.Opentok.OneToOne.Droid
             FindViewById<TextView>(Resource.Id.version_text).Text = OpentokVersionText;
         }
 
-        protected async Task<bool> CheckPermissions(bool requestPermissions = true)
+        protected bool CheckPermissions(bool requestPermissions = true)
         {
             var isGranted = REQUEST_PERMISSIONS.Select(permission => ContextCompat.CheckSelfPermission(this, permission) == (int)Permission.Granted).All(granted => granted);
             if (requestPermissions && !isGranted)
@@ -61,9 +61,9 @@ namespace DT.Samples.Opentok.OneToOne.Droid
             CheckPermissionsAndStartCall();
         }
 
-        private async Task CheckPermissionsAndStartCall()
+        private void CheckPermissionsAndStartCall()
         {
-            if (await CheckPermissions(false))
+            if (CheckPermissions(false))
             {
                 StartActivity(typeof(RoomActivity));
             }

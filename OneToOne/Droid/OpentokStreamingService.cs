@@ -126,6 +126,7 @@ namespace DT.Samples.Opentok.OneToOne.Droid
         {
         }
 
+        [Obsolete]
         public void InitNewSession(string apiKey, string sessionId, string userToken)
         {
             if (_session != null)
@@ -150,6 +151,7 @@ namespace DT.Samples.Opentok.OneToOne.Droid
             _session.Connect(_userToken);
         }
 
+        [Obsolete]
         private void Publish()
         {
             lock (_syncRoot)
@@ -175,6 +177,7 @@ namespace DT.Samples.Opentok.OneToOne.Droid
             }
         }
 
+        [Obsolete]
         private void Subscribe(Stream stream)
         {
             lock (_syncRoot)
