@@ -126,7 +126,6 @@ namespace DT.Samples.Opentok.OneToOne.Droid
         {
         }
 
-        [Obsolete]
         public void InitNewSession(string apiKey, string sessionId, string userToken)
         {
             if (_session != null)
@@ -145,13 +144,12 @@ namespace DT.Samples.Opentok.OneToOne.Droid
             IsAudioSubscriptionEnabled = true;
             IsSubscriberVideoEnabled = true;
 
-            _session = new Session(Android.App.Application.Context, _apiKey, _sessionId);
+            _session = new Session.Builder(Android.App.Application.Context, _apiKey, _sessionId).Build();
             SubscribeForSessionEvents(_session);
 
             _session.Connect(_userToken);
         }
 
-        [Obsolete]
         private void Publish()
         {
             lock (_syncRoot)
@@ -159,7 +157,7 @@ namespace DT.Samples.Opentok.OneToOne.Droid
                 if (_publisher != null || _session == null)
                     return;
 
-                _publisher = new Publisher(Android.App.Application.Context, Environment.TickCount.ToString());
+                _publisher = new Publisher.Builder(Android.App.Application.Context).Build() as Publisher;
 
                 SubscribeForPublsherEvents(_publisher, true);
                 _publisher.SetStyle(BaseVideoRenderer.StyleVideoScale, BaseVideoRenderer.StyleVideoFill);
@@ -177,7 +175,6 @@ namespace DT.Samples.Opentok.OneToOne.Droid
             }
         }
 
-        [Obsolete]
         private void Subscribe(Stream stream)
         {
             lock (_syncRoot)
@@ -185,7 +182,7 @@ namespace DT.Samples.Opentok.OneToOne.Droid
                 if (_subscriber != null || _session == null)
                     return;
 
-                _subscriber = new Subscriber(Android.App.Application.Context, stream);
+                _subscriber = new Subscriber.Builder(Android.App.Application.Context, stream).Build() as Subscriber;
 
                 SubscribeForSubscriberEvents(_subscriber);
                 _subscriber.SetStyle(BaseVideoRenderer.StyleVideoScale, BaseVideoRenderer.StyleVideoFill);
