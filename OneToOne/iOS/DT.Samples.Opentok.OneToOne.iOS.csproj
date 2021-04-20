@@ -172,7 +172,7 @@
       <HintPath>..\..\packages\Xam.Plugins.Settings.3.1.1\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Vonage.iOS">
-      <HintPath>..\..\packages\Xamarin.Vonage.iOS.2.19.1\lib\Xamarin.iOS10\Xamarin.Vonage.iOS.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Vonage.iOS.2.19.1.2\lib\Xamarin.iOS10\Xamarin.Vonage.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

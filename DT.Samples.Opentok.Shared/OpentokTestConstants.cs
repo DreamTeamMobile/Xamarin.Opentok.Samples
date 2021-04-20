@@ -7,6 +7,6 @@
         public const string SessionId = "";
         public const string Token = "";
         public const bool GenerateSessionAndTokenWithServer = false;
-        public const string ShareString = "Hey check out Xamarin Opentok sample app at: https://drmtm.us/videosample";
+        public const string ShareString = "Hey check out Xamarin Opentok sample app at: http://github.com/DreamTeamMobile";
     }
 }

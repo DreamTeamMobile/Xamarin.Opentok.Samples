@@ -189,7 +189,7 @@
       <HintPath>..\..\packages\Xamarin.Android.Support.Vector.Drawable.28.0.0.3\lib\monoandroid90\Xamarin.Android.Support.Vector.Drawable.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Vonage.Android">
-      <HintPath>..\..\packages\Xamarin.Vonage.Android.2.19.0\lib\MonoAndroid\Xamarin.Vonage.Android.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Vonage.Android.2.19.1\lib\MonoAndroid\Xamarin.Vonage.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
